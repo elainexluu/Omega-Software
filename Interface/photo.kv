@@ -1,12 +1,18 @@
-GridLayout:
-    rows: 3
-    Label:
-        text: "Team Omega App Development in Progress"
-    
-    Label:
-        text: "Logo will go above"
-    
+FloatLayout:
+    GridLayout:
+        cols: 1  
+        pos_hint: {"center_x":0.5,"center_y": 0.3}
+        Label:
+            text: "Team Omega App Development in Progress"
+            size_hint_x: 0.6
+            size: self.texture_size
+            text_size: root.width, None
+            halign: "center"
+            
     Button:
         id: begin
         text: "Begin Sweeping"
+        size_hint: (0.6,0.1)
+        pos_hint: {"center_x":0.5,"center_y":0.2}
+        
     
