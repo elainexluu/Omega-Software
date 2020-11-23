@@ -1,8 +1,24 @@
-FloatLayout:
+<Border@Widget>:
+    pos_hint: {'center_x':0.5,'center_y':0.5}
+    canvas:
+        Color:
+            rgba: (1,1,1,1)
+        
+        Rectangle:
+            pos: 15,15
+            size: (self.width-30,self.height-30)
+        Color:
+            rgba: (0,0,0,1)
+        Line:
+            width: 2
+            rectangle: self.x+15, self.y+15, self.width-30, self.height-30
+PhotoRoot:
+    Border:
     GridLayout:
         cols: 1  
         pos_hint: {"center_x":0.5,"center_y": 0.3}
         Label:
+            color: (0,0,0,1)
             text: "Team Omega App Development in Progress"
             size_hint_x: 0.6
             size: self.texture_size
@@ -14,5 +30,7 @@ FloatLayout:
         text: "Begin Sweeping"
         size_hint: (0.6,0.1)
         pos_hint: {"center_x":0.5,"center_y":0.2}
+        
+
         
     
