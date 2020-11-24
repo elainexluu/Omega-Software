@@ -10,8 +10,6 @@ from kivy.uix.image import Image
 
 Window.clearcolor = (0.4,0.74,0.91,0.7)
 
-
-
 class PhotoRoot(FloatLayout):
     """Custom Class inheriting from floatlayout to provide no restriction
     on its child widgets"""
@@ -24,9 +22,9 @@ class Logo(Image):
     
     pass 
 
-class PhotoApp(App):
+class ImitariApp(App):
     def build(self):
         return
 
 if __name__ == '__main__':
-    PhotoApp().run()
+    ImitariApp().run()
