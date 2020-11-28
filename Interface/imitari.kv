@@ -1,5 +1,6 @@
 #:import rgba kivy.utils.get_color_from_hex
 
+
 <Border@Widget>:
     pos_hint: {'center_x':0.5,'center_y':0.5}
     canvas:
@@ -29,8 +30,18 @@
     on_release: self.background_color = (0.4,0.74,0.91,1)
     
 <MyProgress@ProgressBar>:
+    id: pb
     value: 50
     size_hint_x: 0.5
+
+<ProgressLabel@Label>:
+    id: pblabel
+    font_size: 20
+    size: self.texture_size
+    valign: "top"
+    halign: "center"
+    text_size: root.width-30, None
+    color: (0,0,0,1)
 
 <HomeWindow>:
     name: "home"
@@ -78,6 +89,7 @@
             
 <LoadingWindow>:
     name: "loadingscreen"
+    pb: pb
     PhotoRoot:
         Border:
         GridLayout:
@@ -100,6 +112,7 @@
                     size_hint_y: 2
                     pos_hint: {"center_x":1,"center_y":0.6}
                     
+                    
             AnchorLayout:
                 anchor_y: "bottom"
                 anchor_x: "center"
@@ -112,14 +125,17 @@
                     text_size: root.width-30, None
                     halign: "center"
                     valign: "top"
+                ProgressLabel:
+                    id: pblabel
+                    text: str(pb.value) + "%"
             
             AnchorLayout:
-                size_hint_y: 0.25    
+                size_hint_y: 0.5  
                 MyProgress:
-                    anchor_y: "bottom"
-                    anchor_x: "center"
                     id: pb
-            
+                    anchor_y: "top"
+                    anchor_x: "center"
+
 
 WindowManager:
     HomeWindow:

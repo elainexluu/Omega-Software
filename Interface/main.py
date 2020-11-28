@@ -3,6 +3,7 @@ from kivy.core.window import Window
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.image import Image
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import ObjectProperty
 
 
 # the arguments used here are R G B A (red,green,blue,alpha) 
@@ -27,7 +28,7 @@ class HomeWindow(Screen):
     pass 
 
 class LoadingWindow(Screen):
-    pass 
+    pb = ObjectProperty(None)
 
 class WindowManager(ScreenManager):
     pass
