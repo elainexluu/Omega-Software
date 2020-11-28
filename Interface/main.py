@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.core.window import Window
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.image import Image
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 
 # the arguments used here are R G B A (red,green,blue,alpha) 
@@ -21,6 +22,15 @@ class Logo(Image):
     widget"""
     
     pass 
+
+class HomeWindow(Screen):
+    pass 
+
+class LoadingWindow(Screen):
+    pass 
+
+class WindowManager(ScreenManager):
+    pass
 
 class ImitariApp(App):
     def build(self):
