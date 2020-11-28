@@ -29,7 +29,8 @@
     on_release: self.background_color = (0.4,0.74,0.91,1)
     
 <MyProgress@ProgressBar>:
-    
+    value: 50
+    size_hint_x: 0.5
 
 <HomeWindow>:
     name: "home"
@@ -118,8 +119,6 @@
                     anchor_y: "bottom"
                     anchor_x: "center"
                     id: pb
-                    value: 50
-                    size_hint_x: 0.5
             
 
 WindowManager:
