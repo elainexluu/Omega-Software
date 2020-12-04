@@ -43,6 +43,57 @@
     text_size: root.width-30, None
     color: (0,0,0,1)
 
+<PhotoDisplayBorder@Widget>:
+    pos_hint: {'center_x':0.5,'center_y':0.5}
+    canvas:
+        Color:
+            rgba: (1,1,1,1) 
+        Rectangle:
+            size: self.size
+            pos: self.pos
+        Color:
+            rgba: (0,0,0,1)
+        Line:
+            width: 1.5
+            rectangle: self.x+15, self.y+15, self.width-30, self.height-130
+
+<FolderButton@Button>:
+    background_normal: ''
+    background_color: (0.99,0.84,0.04,1)
+    canvas.before:
+        Color:
+            rgba: (0,0,0,1)
+        Line:
+            width: 2
+            rectangle: self.x, self.y, self.width, self.height
+    background_down: ''
+    on_press: self.background_color = (0.4,0.74,0.91,1)
+    on_release: self.background_color = (0.99,0.84,0.04,1)
+
+<GroupColor@Widget>:
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (0.4,0.74,0.91,1)
+        Rectangle:
+            pos: self.pos 
+            size: self.size     
+        Color: 
+            rgba: (0,0,0,1)       
+        Line:
+            width: 1.5
+            rectangle: self.x, self.y, self.width, self.height      
+    size_hint_y: None
+    height: dp(20)
+
+<GroupLabel@Label+GroupColor>:
+    text_size: self.size
+    padding_x: 20
+    color: (0, 0, 0, 1)
+
+<ImageButton@Button>:
+    id: image
+
 <HomeWindow>:
     name: "home"
     PhotoRoot:
@@ -136,10 +187,157 @@
                     anchor_y: "top"
                     anchor_x: "center"
 
+        # temporary button just to bypass loading screen
+        MyButton:
+            color: (0, 0, 0, 1)
+            text: "next page"
+            text_size: self.size
+            halign: 'center'
+            valign: 'center'
+            size_hint: (0.1,0.1)
+            pos_hint: {'center_x':0.9,'center_y':0.2}
+            on_release: app.root.current = "photodisplay"
+
+
+<PhotoDisplayWindow>:
+    name: "photodisplay"
+    PhotoRoot:
+        PhotoDisplayBorder:
+
+        GridLayout: 
+            cols: 1
+            rows: 2
+            padding: 15
+    
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                spacing: 25
+                padding: 20
+                
+                FolderButton:
+                    id: blank
+                    color: (0, 0, 0, 1)
+                    text: "blank"
+                    text_size: self.size 
+                    font_size: sp(13)
+                    halign: 'center'
+                    valign: 'center'
+                    height: dp(10)
+                    width: dp(5)
+
+                FolderButton:
+                    id: select
+                    color: (0, 0, 0, 1)
+                    text: "Select Photos"
+                    text_size: self.size 
+                    font_size: sp(13)
+                    halign: 'center'
+                    valign: 'center'
+                    height: dp(10)
+                    width: dp(5)
+                    
+                FolderButton:
+                    id: folder
+                    color: (0, 0, 0, 1)
+                    text: "Folders"
+                    text_size: self.size 
+                    font_size: sp(13)
+                    halign: 'center'
+                    valign: 'center'
+                    height: dp(10)
+                    width: dp(5)
+           
+            BoxLayout:      
+                orientation: 'vertical'
+
+                GroupLabel:
+                    text: "Group 1"
+    
+                GridLayout:
+                    spacing: 5
+                    padding: 5
+                    cols: 3
+            
+                    ImageButton: 
+                        background_normal: 'image1.jpg'
+                    ImageButton: 
+                        background_normal: 'image2.jpg'
+                    ImageButton:
+                        background_normal: 'image3.jpg'
+        
+                GroupLabel:
+                    text: "Group 2"
+    
+                GridLayout:
+                    padding: 5
+                    spacing: 5
+                    cols: 3
+            
+                    ImageButton: 
+                        background_normal: 'image4.jpg'
+
+                    ImageButton: 
+                        background_normal: 'image5.jpg'
+
+                    ImageButton: 
+                        background_normal: 'image6.jpg'
+                        
+                GroupLabel:
+                    text: "Group 3"  
+                
+                GridLayout:
+                    padding: 5
+                    spacing: 5
+                    cols: 3
+            
+                    ImageButton: 
+                        background_normal: 'image7.jpg'
+    
+                    ImageButton: 
+                        background_normal: 'image8.jpg'
+                
+                    ImageButton:
+                        background_normal: 'image9.jpg'
+                        
+                GroupLabel:
+                    text: "Group 4"            
+                
+                GridLayout:
+                    padding: 5
+                    spacing: 5
+                    cols: 4
+            
+                    ImageButton: 
+                        background_normal: 'image10.jpg'
+    
+                    ImageButton: 
+                        background_normal: 'image11.jpg'
+                        
+                    ImageButton: 
+                        background_normal: 'image12.jpg'
+                                               
+                    ImageButton: 
+                        background_normal: 'image13.jpg'
+                               
+                GroupLabel:
+                    text: "Group 5"              
+                               
+                GridLayout:
+                    padding: 5
+                    spacing: 5
+                    cols: 3
+            
+                    ImageButton: 
+                        background_normal: 'image14.jpg'
+    
+                    ImageButton: 
+                        background_normal: 'image15.jpg'
+                        
+                    ImageButton: 
+                        background_normal: 'image16.jpg'
 
 WindowManager:
     HomeWindow:
     LoadingWindow:
-
-        
-    
+    PhotoDisplayWindow:

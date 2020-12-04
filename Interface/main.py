@@ -29,6 +29,9 @@ class HomeWindow(Screen):
 
 class LoadingWindow(Screen):
     pb = ObjectProperty(None)
+    
+class PhotoDisplayWindow(Screen):
+    pass
 
 class WindowManager(ScreenManager):
     pass
