@@ -1,6 +1,8 @@
 #:import rgba kivy.utils.get_color_from_hex
 
-
+<Label>:
+    font_name: "LemonMilk"
+    
 <Border@Widget>:
     pos_hint: {'center_x':0.5,'center_y':0.5}
     canvas:
@@ -16,7 +18,7 @@
             width: 1.5
             rectangle: self.x+15, self.y+15, self.width-30, self.height-30
             
-<MyButton@Button>
+<MyButton@Button>:
     background_normal: ''
     background_color: (0.4,0.74,0.91,1)
     canvas.before:
@@ -55,9 +57,10 @@
             rgba: (0,0,0,1)
         Line:
             width: 1.5
-            rectangle: self.x+15, self.y+15, self.width-30, self.height-130
+            rectangle: self.x+15, self.y+15, self.width-30, self.height-30
 
 <FolderButton@Button>:
+    color: (0, 0, 0, 1)
     background_normal: ''
     background_color: (0.99,0.84,0.04,1)
     canvas.before:
@@ -69,6 +72,7 @@
     background_down: ''
     on_press: self.background_color = (0.4,0.74,0.91,1)
     on_release: self.background_color = (0.99,0.84,0.04,1)
+        
 
 <GroupColor@Widget>:
     background_normal: ''
@@ -93,6 +97,8 @@
 
 <ImageButton@Button>:
     id: image
+    background_down: ''
+    on_press: app.root.current = "photozoom"
 
 <HomeWindow>:
     name: "home"
@@ -136,7 +142,9 @@
             text: "Begin Sweeping"
             size_hint: (0.6,0.1)
             pos_hint: {"center_x":0.5,"center_y":0.2}
-            on_release: app.root.current = "loadingscreen"
+            on_release: 
+                app.root.current = "loadingscreen"
+                root.manager.transition.direction = 'left'
             
 <LoadingWindow>:
     name: "loadingscreen"
@@ -187,7 +195,7 @@
                     anchor_y: "top"
                     anchor_x: "center"
 
-        # temporary button just to bypass loading screen
+        # temporary button just to bypass loading screen DELETE BEFORE EXPORT
         MyButton:
             color: (0, 0, 0, 1)
             text: "next page"
@@ -196,8 +204,9 @@
             valign: 'center'
             size_hint: (0.1,0.1)
             pos_hint: {'center_x':0.9,'center_y':0.2}
-            on_release: app.root.current = "photodisplay"
-
+            on_release: 
+                app.root.current = "photodisplay"
+                root.manager.transition.direction = 'left'
 
 <PhotoDisplayWindow>:
     name: "photodisplay"
@@ -211,20 +220,23 @@
     
             BoxLayout:
                 orientation: 'horizontal'
-                size_hint_y: None
+                size_hint_y: 0.2
                 spacing: 25
                 padding: 20
                 
                 FolderButton:
-                    id: blank
+                    id: displayback
                     color: (0, 0, 0, 1)
-                    text: "blank"
+                    text: "Go Back"
                     text_size: self.size 
                     font_size: sp(13)
                     halign: 'center'
                     valign: 'center'
                     height: dp(10)
                     width: dp(5)
+                    on_release:
+                        app.root.current = "home"
+                        root.manager.transition.direction = 'right'
 
                 FolderButton:
                     id: select
@@ -239,7 +251,6 @@
                     
                 FolderButton:
                     id: folder
-                    color: (0, 0, 0, 1)
                     text: "Folders"
                     text_size: self.size 
                     font_size: sp(13)
@@ -337,7 +348,58 @@
                     ImageButton: 
                         background_normal: 'image16.jpg'
 
+<PhotoZoomWindow>:
+    # a window for when a singular image is being inspected by the user in full screen
+    name: "photozoom"
+    
+    GridLayout:
+        cols: 1
+        rows: 3 
+        
+        AnchorLayout:
+            anchor_y: "top"
+            size_hint_y: 0.2
+            GridLayout:
+                cols: 3
+                rows: 1
+                padding: 10
+                FolderButton:
+                    id: "zoomback"
+                    text: "Go Back"
+                    on_release: 
+                        app.root.current = "photodisplay"
+                        root.manager.transition.direction = 'right'
+                        
+                Label:
+                    color: (0,0,0,1)
+                    text: "Preview"
+                    bold: True
+                    font_size: 20
+                FolderButton:
+                    text: "Delete"
+                
+        AnchorLayout:
+            padding: 10,0,10,10
+            canvas:
+                Color: 
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: (self.width,self.height-30)
+                    pos: self.pos
+                
+            Image:
+                source: 'image2.jpg'
+                size: self.texture_size
+                pos_hint: {"center_y": 0.5}
+                
+        AnchorLayout:
+            size_hint_y: 0.2
+            
+
+        
+
 WindowManager:
     HomeWindow:
     LoadingWindow:
     PhotoDisplayWindow:
+    PhotoZoomWindow: 
