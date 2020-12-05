@@ -28,6 +28,7 @@
             width: 2
             rectangle: self.x, self.y, self.width, self.height
     background_down: ''
+    color: (0, 0, 0, 1)
     on_press: self.background_color = (0.99,0.84,0.04,1)
     on_release: self.background_color = (0.4,0.74,0.91,1)
     
@@ -61,6 +62,7 @@
 
 <FolderButton@Button>:
     color: (0, 0, 0, 1)
+    text_size: self.size
     background_normal: ''
     background_color: (0.99,0.84,0.04,1)
     canvas.before:
@@ -70,6 +72,11 @@
             width: 2
             rectangle: self.x, self.y, self.width, self.height
     background_down: ''
+    halign: 'center'
+    valign: 'center'
+    font_size: sp(13)
+    height: dp(10)
+    width: dp(5)
     on_press: self.background_color = (0.4,0.74,0.91,1)
     on_release: self.background_color = (0.99,0.84,0.04,1)
         
@@ -138,7 +145,6 @@
                 
         MyButton:
             id: begin
-            color:(0,0,0,1)
             text: "Begin Sweeping"
             size_hint: (0.6,0.1)
             pos_hint: {"center_x":0.5,"center_y":0.2}
@@ -197,11 +203,8 @@
 
         # temporary button just to bypass loading screen DELETE BEFORE EXPORT
         MyButton:
-            color: (0, 0, 0, 1)
             text: "next page"
             text_size: self.size
-            halign: 'center'
-            valign: 'center'
             size_hint: (0.1,0.1)
             pos_hint: {'center_x':0.9,'center_y':0.2}
             on_release: 
@@ -226,38 +229,18 @@
                 
                 FolderButton:
                     id: displayback
-                    color: (0, 0, 0, 1)
-                    text: "Go Back"
-                    text_size: self.size 
-                    font_size: sp(13)
-                    halign: 'center'
-                    valign: 'center'
-                    height: dp(10)
-                    width: dp(5)
+                    text: "Go Back" 
                     on_release:
                         app.root.current = "home"
                         root.manager.transition.direction = 'right'
 
                 FolderButton:
                     id: select
-                    color: (0, 0, 0, 1)
                     text: "Select Photos"
-                    text_size: self.size 
-                    font_size: sp(13)
-                    halign: 'center'
-                    valign: 'center'
-                    height: dp(10)
-                    width: dp(5)
                     
                 FolderButton:
                     id: folder
-                    text: "Folders"
-                    text_size: self.size 
-                    font_size: sp(13)
-                    halign: 'center'
-                    valign: 'center'
-                    height: dp(10)
-                    width: dp(5)
+                    text: "Folders" 
            
             BoxLayout:      
                 orientation: 'vertical'
@@ -379,18 +362,19 @@
                     text: "Delete"
                 
         AnchorLayout:
-            padding: 10,0,10,10
+            padding: 10,70,10,10
             canvas:
                 Color: 
                     rgba: (1,1,1,1)
                 Rectangle:
-                    size: (self.width,self.height-30)
+                    size: (self.width,self.height-60)
                     pos: self.pos
                 
             Image:
                 source: 'image2.jpg'
                 size: self.texture_size
-                pos_hint: {"center_y": 0.5}
+                pos: self.pos
+                
                 
         AnchorLayout:
             size_hint_y: 0.2
