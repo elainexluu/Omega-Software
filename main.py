@@ -5,6 +5,7 @@ from kivy.uix.image import Image
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 from kivy.core.text import LabelBase
+from DuplicateRemover import DuplicateRemover
 
 # the arguments used here are R G B A (red,green,blue,alpha) 
 # sets background colour
@@ -50,3 +51,16 @@ if __name__ == '__main__':
     LabelBase.register(name= 'LemonMilk', fn_regular = 'Fonts/LemonMilkMedium.ttf',
                    fn_bold = 'Fonts/LemonMilkBold.ttf')
     ImitariApp().run()
+    
+   
+
+dirname = "Images"
+
+# Remove Duplicates
+dr = DuplicateRemover(dirname)
+dr.find_duplicates()
+
+# Find Similar Images
+#dr.find_similar("image11.jpg",10)
+
+    
