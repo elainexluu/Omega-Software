@@ -109,6 +109,7 @@
 
 <HomeWindow>:
     name: "home"
+    beginsweep: beginbtn
     PhotoRoot:
         Border:
         GridLayout:
@@ -135,81 +136,29 @@
                 anchor_y: "top"
                 anchor_x: "center"
                 Label:
+                    padding: 10,10
+                    id: homelabel
                     color: (0,0,0,1)
-                    text: "Team Omega App Development in Progress"
-                    size_hint_x: 0.6
+                    text: "Welcome! Photos can take up a lot of space in your device.\nBegin sweeping to find similar photos in your gallery!"
+                    multiline: True
+                    size_hint_x: 0.1
+                    size_hint_y: 0.7
                     size: self.texture_size
                     text_size: root.width-30, None
                     halign: "center"
                     valign: "top"
                 
         MyButton:
-            id: begin
+            id: beginbtn
             text: "Begin Sweeping"
             size_hint: (0.6,0.1)
             pos_hint: {"center_x":0.5,"center_y":0.2}
             on_release: 
-                app.root.current = "loadingscreen"
-                root.manager.transition.direction = 'left'
-            
-<LoadingWindow>:
-    name: "loadingscreen"
-    pb: pb
-    PhotoRoot:
-        Border:
-        GridLayout:
-            cols: 1 
-            rows: 4
-            pos_hint: {"center_x":0.5,"center_y": 0.56}
-            Label:
-                color: (0,0,0,1)
-                bold: True
-                font_size: 30
-                text: "IMITARI"
-                size: self.texture_size
-                text_size: root.width-30, None
-                halign: "center"
-                valign: "bottom"  
-            BoxLayout:
-                size_hint_y: 0.4
-                Image:
-                    source: 'logo.png'
-                    size_hint_y: 2
-                    pos_hint: {"center_x":1,"center_y":0.6}
-                    
-                    
-            AnchorLayout:
-                anchor_y: "bottom"
-                anchor_x: "center"
-                Label:
-                    color: (0,0,0,1)
-                    text: "Sweeping..."
-                    size_hint_x: 0.6
-                    size_hint_y: 0.5
-                    size: self.texture_size
-                    text_size: root.width-30, None
-                    halign: "center"
-                    valign: "top"
-                ProgressLabel:
-                    id: pblabel
-                    text: str(pb.value) + "%"
-            
-            AnchorLayout:
-                size_hint_y: 0.5  
-                MyProgress:
-                    id: pb
-                    anchor_y: "top"
-                    anchor_x: "center"
-
-        # temporary button just to bypass loading screen DELETE BEFORE EXPORT
-        MyButton:
-            text: "next page"
-            text_size: self.size
-            size_hint: (0.1,0.1)
-            pos_hint: {'center_x':0.9,'center_y':0.2}
-            on_release: 
                 app.root.current = "photodisplay"
                 root.manager.transition.direction = 'left'
+                root.beginSweep()
+            
+
 
 <PhotoDisplayWindow>:
     name: "photodisplay"
@@ -386,6 +335,5 @@
 
 WindowManager:
     HomeWindow:
-    LoadingWindow:
     PhotoDisplayWindow:
     PhotoZoomWindow: 
