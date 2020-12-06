@@ -9,6 +9,7 @@ class DuplicateRemover:
         self.dirname = dirname
         self.hash_size = hash_size
         
+        
     def find_duplicates(self):
         """
         Find and Delete Duplicates
@@ -17,16 +18,20 @@ class DuplicateRemover:
         fnames = os.listdir(self.dirname)
         hashes = {}
         duplicates = []
+        #originals = []
         print("Finding Duplicates Now!\n")
         for image in fnames:
             with Image.open(os.path.join(self.dirname,image)) as img:
                 temp_hash = imagehash.average_hash(img, self.hash_size)
                 if temp_hash in hashes:
                     print("Duplicate {} \nfound for Image {}!\n".format(image,hashes[temp_hash]))
+                    #originals.append(hashes[temp_hash])
+                    #originals.append(image)
+                    #print(originals)
                     duplicates.append(image)
                 else:
                     hashes[temp_hash] = image
-                   
+                    """         
         if len(duplicates) != 0:
             a = input("Do you want to delete these {} Images? Press Y or N:  ".format(len(duplicates)))
             space_saved = 0
@@ -43,7 +48,7 @@ class DuplicateRemover:
         else:
             print("No Duplicates Found :(")
             
-        
+            """
             
             
     def find_similar(self,location,similarity=80):
