@@ -41,7 +41,7 @@ class HomeWindow(Screen):
         
         # Remove Duplicates
         dr = DuplicateRemover(dirname)
-        dr.find_duplicates()    
+        dup = dr.find_duplicates()  
 """
 class LoadingWindow(Screen):
     pass
@@ -51,7 +51,8 @@ class PhotoDisplayWindow(Screen):
     pass
 
 class PhotoZoomWindow(Screen):
-    pass
+    dr.delete_duplicates(dup) 
+    
 
 class WindowManager(ScreenManager):
     pass

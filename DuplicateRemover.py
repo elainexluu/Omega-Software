@@ -31,7 +31,9 @@ class DuplicateRemover:
                     duplicates.append(image)
                 else:
                     hashes[temp_hash] = image
-                    """         
+            return duplicates
+                    
+    def delete_duplicates(self, duplicates):
         if len(duplicates) != 0:
             a = input("Do you want to delete these {} Images? Press Y or N:  ".format(len(duplicates)))
             space_saved = 0
@@ -48,7 +50,7 @@ class DuplicateRemover:
         else:
             print("No Duplicates Found :(")
             
-            """
+            
             
             
     def find_similar(self,location,similarity=80):
