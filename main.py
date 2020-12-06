@@ -40,7 +40,9 @@ class HomeWindow(Screen):
         dirname = "Images"
         
         # Remove Duplicates
+        global dr
         dr = DuplicateRemover(dirname)
+        global dup
         dup = dr.find_duplicates()  
 """
 class LoadingWindow(Screen):
@@ -51,7 +53,15 @@ class PhotoDisplayWindow(Screen):
     pass
 
 class PhotoZoomWindow(Screen):
-    dr.delete_duplicates(dup) 
+    
+    deletebtn = ObjectProperty(None)
+    
+    def deletephoto(self):
+        """
+        delete button will delete ALL duplicates 
+        (code has not been edited to delete a singular image)
+        """
+        dr.delete_duplicates(dup) 
     
 
 class WindowManager(ScreenManager):

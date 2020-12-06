@@ -283,7 +283,7 @@
 <PhotoZoomWindow>:
     # a window for when a singular image is being inspected by the user in full screen
     name: "photozoom"
-    
+    deletebtn: deletebtn
     GridLayout:
         cols: 1
         rows: 3 
@@ -310,7 +310,10 @@
                     font_size: 20
                                
                 FolderButton:
+                    id: deletebtn
                     text: "Delete"
+                    on_release:
+                        #root.deletephoto()
                 
         AnchorLayout:
             padding: 10,70,10,10
