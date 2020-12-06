@@ -31,20 +31,20 @@ class DuplicateRemover:
                     duplicates.append(image)
                 else:
                     hashes[temp_hash] = image
-            return duplicates
+        return duplicates
                     
     def delete_duplicates(self, duplicates):
         if len(duplicates) != 0:
-            a = input("Do you want to delete these {} Images? Press Y or N:  ".format(len(duplicates)))
-            space_saved = 0
-            if(a.strip().lower() == "y"):
-                for duplicate in duplicates:
-                    space_saved += os.path.getsize(os.path.join(self.dirname,duplicate))
-                    
-                    os.remove(os.path.join(self.dirname,duplicate))
-                    print("{} Deleted Succesfully!".format(duplicate))
-    
-                print("\n\nYou saved {} mb of Space!".format(round(space_saved/1000000),2))
+        #a = input("Do you want to delete these {} Images? Press Y or N:  ".format(len(duplicates)))
+        #space_saved = 0
+        #if(a.strip().lower() == "y"):
+            for duplicate in duplicates:
+               # space_saved += os.path.getsize(os.path.join(self.dirname,duplicate))
+                
+                os.remove(os.path.join(self.dirname,duplicate))
+                print("{} Deleted Succesfully!".format(duplicate))
+
+            #print("\n\nYou saved {} mb of Space!".format(round(space_saved/1000000),2))
             else:
                 print("Thank you for Using Duplicate Remover")
         else:
