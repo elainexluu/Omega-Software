@@ -18,19 +18,34 @@ class DuplicateRemover:
         fnames = os.listdir(self.dirname)
         hashes = {}
         duplicates = []
-        originals = []
+        #originals = []
+        #originals = set(originals)
+        
+        lst = [[],[]]
+        tempLst = [] 
+        
         print("Finding Duplicates Now!\n")
         for image in fnames:
+            
             with Image.open(os.path.join(self.dirname,image)) as img:
                 temp_hash = imagehash.average_hash(img, self.hash_size)
                 if temp_hash in hashes:
                     print("Duplicate {} \nfound for Image {}!\n".format(image,hashes[temp_hash]))
-                    originals.append(hashes[temp_hash])
-                    originals.append(image)
-                    print(originals)
+                    tempLst.append(hashes[temp_hash])
+                    for arr in lst:
+                    
+                        if hashes[temp_hash] in arr:
+                            arr.append(image)
+                            
+                        else:
+                            arr.append(hashes[temp_hash])
+                            arr.append(image)
+                            
                     duplicates.append(image)
+                    
                 else:
                     hashes[temp_hash] = image
+        print(lst)
         return duplicates
                     
     def delete_duplicates(self, duplicates):
