@@ -32,6 +32,7 @@ class DuplicateRemover:
                 if temp_hash in hashes:
                     print("Duplicate {} \nfound for Image {}!\n".format(image,hashes[temp_hash]))
                     tempLst.append(hashes[temp_hash])
+                    """
                     for arr in lst:
                     
                         if hashes[temp_hash] in arr:
@@ -40,7 +41,7 @@ class DuplicateRemover:
                         else:
                             arr.append(hashes[temp_hash])
                             arr.append(image)
-                            
+                    """
                     duplicates.append(image)
                     
                 else:
